@@ -1,0 +1,49 @@
+<nav class="sticky-top navbar navbar-expand-md navbar-light bg-white border-bottom p-0">
+  <div class="container">
+    <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/home" routerLinkActive="active">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/trips" routerLinkActive="active">My Trips</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/friends" routerLinkActive="active">My Friends</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/organizations" routerLinkActive="active">My Groups</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/admin" routerLinkActive="active">Admin</a>
+        </li>
+      </ul>
+    </div>
+    <div class="mx-auto order-0">
+      <a class="navbar-brand" routerLink="/home">MBCP</a>
+    </div>
+    <div *ngIf="url !== '/'" class="navbar-collapse collapse w-100 order-3 dual-collapse2 justify-content-end">
+      <form class="form-inline">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <div ngbDropdown class="nav-item" placement="bottom-right">
+          <a ngbDropdownToggle class="nav-link" id="profileDropdown"><img [src]="profileImageUrl" style="margin-left: 10px;margin-right: 10px"/></a>
+          <div ngbDropdownMenu aria-labelledby="profileDropdown">
+              <a class="dropdown-item" routerLink="profile/nholbrook">Profile</a>
+              <a class="dropdown-item" href="#">Settings</a>
+              <a class="dropdown-item" href="#">Night Mode</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">Logout</a>
+          </div>
+        </div>
+        <button class="btn my-2 my-sm-0" type="submit">New Trip</button>
+      </form>
+    </div>
+    <div *ngIf="url === '/'" class="navbar-collapse collapse w-100 order-3 dual-collapse2 justify-content-end">
+      <form class="form-inline" (ngSubmit)="login()">
+        <input class="form-control mr-sm-2" placeholder="Username" required [(ngModel)]="username" name="username">
+        <input class="form-control mr-sm-2" placeholder="Password" type="password" required [(ngModel)]="password" name="password">
+        <button class="btn my-2 my-sm-0" type="submit">Login</button>
+      </form>
+    </div>
+  </div>
+</nav>

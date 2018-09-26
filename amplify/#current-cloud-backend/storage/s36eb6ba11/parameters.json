@@ -1,0 +1,9 @@
+{
+    "bucketName": "mbcpf83ce0fbc3b2439d90078e3b9c0b0d5e",
+    "authPolicyName": "s3_amplify_6eb6ba11",
+    "unauthPolicyName": "s3_amplify_6eb6ba11",
+    "authRoleName": "mbcp-20180823181033-authRole",
+    "unauthRoleName": "mbcp-20180823181033-unauthRole",
+    "authPermissions": "rw",
+    "unauthPermissions": ""
+}

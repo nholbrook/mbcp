@@ -1,0 +1,32 @@
+<div class="container pt-3 pb-3">
+  <div class="row">
+    <div class="col-3 ml-1 mr-1 p-0">
+      <div class="bg-white">
+        <div class="feature-image mb-0" [ngStyle]="{'background-image': 'url(' + featuredImageUrl + ')'}"></div>
+        <div class="row">
+          <div class="col-3">
+            <a class="nav-link pl-2 pr-0" routerLink="/user/nholbrook" routerLinkActive="active" style="position: relative; bottom: 40px;"><img [src]="profileImageUrl" class="profile-pic" style="border: 4px #fff solid"/></a>
+          </div>
+          <div class="col-9">
+            <p class="ml-3 m-0 p-0" style="font-weight: bold; font-size: 18px;">{{ profileName }}</p>
+            <p class="ml-3 m-0 p-0" style="font-weight: lighter; color: #aaa">@{{ profileUsername }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-8 ml-1 mr-1 p-0 bg-white">
+      <div class="bg-white border-bottom p-3 d-flex">
+        <input class="form-control" type="search" [(ngModel)]="content" placeholder="What's Happening?" aria-label="Search"/>
+        <button class="btn ml-2" (click)="createPost()">Post</button>
+      </div>
+      <div #trip_card *ngFor="let item of items">
+        <div *ngIf="item.content_type == 'trip'; else post_card">
+          <app-trip-card [tripName]="item.name" [tripDescription]="item.content" [imageURL]="item.image_url" [ownerName]="item.owner_name" [ownerUsername]="item.owner_username" ownerImageURL="../../../../../assets/IMG_0585.jpg"></app-trip-card>
+        </div>
+        <ng-template #post_card>
+            <app-post-card [imageURL]="item.image_url" [content]="item.content" [ownerName]="item.owner_name" [ownerUsername]="item.owner_username" ownerImageURL="../../../../../assets/logo_black.png"></app-post-card>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</div>
