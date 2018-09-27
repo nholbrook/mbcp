@@ -15,7 +15,7 @@ button:active {
 }
 
 button {
-  height: 30px;
+  height: 40px;
   border-radius: 0px;
   color: #fff;
   border-color: #ad2e39;
@@ -24,6 +24,14 @@ button {
   font-family: 'Nunito Sans', sans-serif;
   font-weight: bold;
   padding: 0 10px 0 10px;
+}
+
+.radio {
+  line-height: 25px;
+}
+
+.form-group {
+  margin-bottom: 8px;
 }
 
 input {
@@ -35,6 +43,21 @@ input {
 }
 
 input:focus {
+  box-shadow: 0 0;
+  border-width: 2px;
+  border-color: #ad2e39;
+  height: 40px;
+}
+
+select {
+  height: 40px;
+  border-radius: 0px;
+  font-size: 15px;
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: bold;
+}
+
+select:focus {
   box-shadow: 0 0;
   border-width: 2px;
   border-color: #ad2e39;

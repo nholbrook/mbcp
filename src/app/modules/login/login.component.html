@@ -3,32 +3,133 @@
 <div class="container">
 <div class="row">
   <div class="col-6">
-    <h3 style="padding: 30px; font-weight: 600">Connect with friends and the world around you on MBCP.</h3>
+    <h3 style="padding: 30px; font-weight: 600">Find local trips and groups around you on MBCP.</h3>
   </div>
   <div class="col-6">
-    <h2 style="padding-top: 20px; font-weight: 600">Sign Up</h2>
-    <form class="form-inline" (ngSubmit)="login()">
-      <div class="row" style="padding-top: 20px;">
-        <div class="col-6">
-          <input type="text" class="form-control mr-sm-2" placeholder="First name">
+    <h2 style="padding-top: 20px; font-weight: 600">Create a New Account.</h2>
+    <form>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="inputEmail4">First name</label>
+          <input required class="form-control" id="inputEmail4" placeholder="First name">
         </div>
-        <div class="col-6">
-          <input type="text" class="form-control mr-sm-2" placeholder="Last name">
-        </div>
-      </div>
-      <div class="row" style="padding-top: 20px;">
-        <div class="col-12">
-          <input type="text" class="form-control mr-sm-2" placeholder="Email">
+        <div class="form-group col-md-6">
+          <label for="inputPassword4">Last name</label>
+          <input required class="form-control" id="inputPassword4" placeholder="Last name">
         </div>
       </div>
-      <div class="row" style="padding-top: 20px;">
-        <div class="col-6">
-          <input type="text" class="form-control mr-sm-2" placeholder="Password">
-        </div>
-        <div class="col-6">
-          <input type="text" class="form-control mr-sm-2" placeholder="Confirm Password">
+      <div class="form-group">
+        <label for="inputPassword4">Email</label>
+        <input required type="email" class="form-control" id="inputPassword4" placeholder="Email">
+      </div>
+      <div class="form-group">
+        <label for="inputState">Birthday</label>
+        <div class="form-row">
+          <div class="form-group col-md-5">
+            <select id="inputState" class="form-control">
+              <option>January</option>
+              <option>Febuary</option>
+              <option>March</option>
+              <option>April</option>
+              <option>May</option>
+              <option>June</option>
+              <option>July</option>
+              <option>August</option>
+              <option selected>September</option>
+              <option>October</option>
+              <option>November</option>
+              <option>December</option>
+            </select>
+          </div>
+          <div class="form-group col-md-3">
+            <select id="inputState" class="form-control">
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+              <option>6</option>
+              <option>7</option>
+              <option>8</option>
+              <option>9</option>
+              <option>10</option>
+              <option>11</option>
+              <option>12</option>
+              <option>13</option>
+              <option>14</option>
+              <option>15</option>
+              <option>16</option>
+              <option>17</option>
+              <option>18</option>
+              <option>19</option>
+              <option>20</option>
+              <option>21</option>
+              <option>22</option>
+              <option>23</option>
+              <option>24</option>
+              <option>25</option>
+              <option>26</option>
+              <option selected>27</option>
+              <option>28</option>
+              <option>29</option>
+              <option>30</option>
+            </select>
+          </div>
+          <div class="form-group col-md-4">
+            <select id="inputState" class="form-control">
+              <option>1991</option>
+              <option>1992</option>
+              <option>1993</option>
+              <option>1994</option>
+              <option>1995</option>
+              <option>1996</option>
+              <option>1997</option>
+              <option>1998</option>
+              <option>1999</option>
+              <option>2000</option>
+              <option>2001</option>
+              <option>2002</option>
+              <option>2003</option>
+              <option>2004</option>
+              <option>2005</option>
+              <option>2006</option>
+              <option>2007</option>
+              <option>2008</option>
+              <option>2009</option>
+              <option>2010</option>
+              <option>2011</option>
+              <option>2012</option>
+              <option>2013</option>
+              <option>2014</option>
+              <option>2015</option>
+              <option>2016</option>
+              <option>2017</option>
+              <option selected>2018</option>
+            </select>
+          </div>
         </div>
       </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="inputEmail4">Password</label>
+          <input type="password" required class="form-control" id="inputEmail4" placeholder="Password">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="inputPassword4">Confirm password</label>
+          <input type="password" required class="form-control" id="inputPassword4" placeholder="Confirm password">
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="custom-control custom-radio custom-control-inline">
+          <input type="radio" required id="customRadioInline1" name="customRadioInline1" class="custom-control-input">
+          <label class="custom-control-label radio" for="customRadioInline1">Male</label>
+        </div>
+        <div class="custom-control custom-radio custom-control-inline">
+          <input type="radio" required id="customRadioInline2" name="customRadioInline1" class="custom-control-input">
+          <label class="custom-control-label radio" for="customRadioInline2">Female</label>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary">Sign up</button>
     </form>
   </div>
 </div>

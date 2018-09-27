@@ -29,7 +29,7 @@ export const routes: Routes = [
     data: { title: 'MBCP | :id' }
   },
   { path: 'login', component: LoginComponent, data: { title: 'MBCP | Login' } },
-  { path: '**', redirectTo: 'login' }
+  { path: '**', redirectTo: '' }
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(routes);

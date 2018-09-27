@@ -36,6 +36,8 @@ export class CoreComponent implements OnInit {
     this.amplify.authStateChange$.subscribe(authState => {
       this.auth.signedIn = authState.state === 'signedIn';
     });
+
+    //console.log(JSON.parse(localStorage.getItem('CognitoIdentityServiceProvider.1q049i98vqgtac31h7l4ptkea7.LastAuthUser')));
   }
 
   onImagePicked(file) {
