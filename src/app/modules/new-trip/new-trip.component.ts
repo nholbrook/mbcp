@@ -16,5 +16,16 @@ export class NewTripComponent implements OnInit {
 
   fileChange($event) {
     console.log($event);
+
+    let key = `pics/${file.name}`;
+
+    this.amplify
+      .storage()
+      .put(key, file, {
+        level: 'private',
+        contentType: file.type
+      })
+      .then(result => console.log('uploaded: ', result))
+      .catch(err => console.log('upload error: ', err));
   }
 }

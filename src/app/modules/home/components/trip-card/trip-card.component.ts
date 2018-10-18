@@ -9,7 +9,7 @@ import { Storage } from 'aws-amplify';
   host: { style: 'background-image: #fff' }
 })
 export class TripCardComponent implements OnInit {
-  @Input() imageURL: string;
+  @Input() imageUrl: string;
   @Input() tripName: string;
   @Input() ownerName: string;
   @Input() ownerImageUrl: string;
@@ -28,11 +28,16 @@ export class TripCardComponent implements OnInit {
     }
     this.comments = Math.floor(Math.random() * 100) + 1;
 
-    Storage.get('profile.png', {
-      level: 'public',
-      identityId: this.ownerUsername
+    Storage.get('nickholbrook.jpg', {
+      level: 'public'
     }).then(result => {
       this.ownerImageUrl = JSON.stringify(result);
+    });
+
+    Storage.get('dunes.jpg', {
+      level: 'public'
+    }).then(result => {
+      this.imageUrl = JSON.stringify(result);
     });
   }
 }

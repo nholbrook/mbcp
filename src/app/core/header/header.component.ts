@@ -38,7 +38,7 @@ export class HeaderComponent implements OnInit {
 
     this.amplify.authStateChange$.subscribe(authState => {
       if (authState.state === 'signedIn') {
-        Storage.get('pics/profile.png', { level: 'private' }).then(data => {
+        Storage.get('nickholbrook.jpg', { level: 'public' }).then(data => {
           console.log(data);
           this.profileImageUrl = JSON.stringify(data); //this.sanitizer.bypassSecurityTrustUrl(data);
         });

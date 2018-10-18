@@ -42,7 +42,7 @@ export class HomeComponent implements OnInit {
       this.featuredImageUrl = JSON.stringify(data);
     });
 
-    Storage.get('pics/profile.png', { level: 'private' }).then(data => {
+    Storage.get('nickholbrook.jpg', { level: 'public' }).then(data => {
       console.log(data);
       this.profileImageUrl = JSON.stringify(data); //this.sanitizer.bypassSecurityTrustUrl(data);
     });
