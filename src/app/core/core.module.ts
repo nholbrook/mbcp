@@ -12,6 +12,7 @@ import { routing } from './core.routes';
 import { UserModule } from '../modules/user/user.module';
 import { HomeModule } from '../modules/home/home.module';
 import { ContentModule } from '../modules/content/content.module';
+import { NewTripModule } from '../modules/new-trip/new-trip.module';
 
 import { FeedService } from './http/feed.service';
 import { PostService } from './http/post.service';
@@ -34,6 +35,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     UserModule,
     HomeModule,
     ContentModule,
+    NewTripModule,
     HttpClientModule,
     AmplifyAngularModule,
     LoginModule,

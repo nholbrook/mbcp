@@ -5,6 +5,7 @@ import { UserComponent } from '../modules/user/user.component';
 import { HomeComponent } from '../modules/home/home.component';
 import { LoginComponent } from '../modules/login/login.component';
 import { ContentComponent } from '../modules/content/content.component';
+import { NewTripComponent } from '../modules/new-trip/new-trip.component';
 
 import { AuthGuard } from './guards/auth-guard.service';
 
@@ -27,6 +28,12 @@ export const routes: Routes = [
     canActivate: [AuthGuard],
     component: UserComponent,
     data: { title: 'MBCP | :id' }
+  },
+  {
+    path: 'new-trip',
+    canActivate: [AuthGuard],
+    component: NewTripComponent,
+    data: { title: 'MBCP | New Trip' }
   },
   { path: 'login', component: LoginComponent, data: { title: 'MBCP | Login' } },
   { path: '**', redirectTo: '' }
