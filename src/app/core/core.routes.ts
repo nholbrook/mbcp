@@ -10,7 +10,11 @@ import { NewTripComponent } from '../modules/new-trip/new-trip.component';
 import { AuthGuard } from './guards/auth-guard.service';
 
 export const routes: Routes = [
-  { path: '', component: LoginComponent, data: { title: 'MBCP | Login' } },
+  {
+    path: '',
+    component: LoginComponent,
+    data: { title: 'MBCP | Login' }
+  },
   {
     path: 'home',
     canActivate: [AuthGuard],
@@ -35,7 +39,6 @@ export const routes: Routes = [
     component: NewTripComponent,
     data: { title: 'MBCP | New Trip' }
   },
-  { path: 'login', component: LoginComponent, data: { title: 'MBCP | Login' } },
   { path: '**', redirectTo: '' }
 ];
 

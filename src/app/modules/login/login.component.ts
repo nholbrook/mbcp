@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Auth } from 'aws-amplify';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-login',
@@ -8,7 +9,7 @@ import { Auth } from 'aws-amplify';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  constructor() {}
+  constructor(private cookieService: CookieService) {}
 
   ngOnInit() {}
 
@@ -23,7 +24,7 @@ export class LoginComponent implements OnInit {
       },
       validationData: []
     })
-      .then(data => console.log(data))
+      .then(data => console.log(data['pool']))
       .catch(err => console.log(err));
   }
 }

@@ -2,13 +2,11 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router, NavigationEnd } from '@angular/router';
 
-import { filter } from 'rxjs/operators';
-
-import { AmplifyService } from 'aws-amplify-angular';
-import { Storage, Auth } from 'aws-amplify';
-
 import { AuthService } from '../authentication/auth.service';
 
+import { filter } from 'rxjs/operators';
+import { AmplifyService } from 'aws-amplify-angular';
+import { Storage, Auth } from 'aws-amplify';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -24,7 +22,7 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private amplify: AmplifyService,
-    private auth: AuthService,
+    private authService: AuthService,
     private sanitizer: DomSanitizer,
     private router: Router
   ) {}
@@ -49,8 +47,10 @@ export class HeaderComponent implements OnInit {
   }
 
   login() {
-    Auth.signIn(this.username, this.password)
-      .then(user => console.log(user))
-      .catch(err => console.log(err));
+    this.authService.login(this.username, this.password);
+  }
+
+  logout() {
+    this.authService.logout();
   }
 }

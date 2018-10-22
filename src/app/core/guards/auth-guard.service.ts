@@ -1,13 +1,18 @@
 import { Injectable } from '@angular/core';
-import { CanActivate } from '@angular/router';
+import { CanActivate, Router } from '@angular/router';
 
 import { CookieService } from 'ngx-cookie-service';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
-  constructor(private cookieService: CookieService) {}
+  constructor(private cookieService: CookieService, private router: Router) {}
 
   canActivate() {
-    return this.cookieService.check('auth');
+    if (!this.cookieService.check('auth')) {
+      this.router.navigate['/'];
+      return false;
+    } else {
+      return true;
+    }
   }
 }
