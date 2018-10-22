@@ -21,7 +21,7 @@
       </div>
       <div #trip_card *ngFor="let item of items">
         <div *ngIf="item.content_type == 'trip'; else post_card">
-          <app-trip-card [tripName]="item.name" [tripDescription]="item.content" [imageURL]="item.image_url" [ownerName]="item.owner_name" [ownerUsername]="item.owner_username" ownerImageURL="../../../../../assets/IMG_0585.jpg"></app-trip-card>
+          <app-trip-card [tripName]="item.name" [tripDescription]="item.content" [imageUrl]="item.image_url" [ownerName]="item.owner_name" [ownerUsername]="item.owner_username" ownerImageURL="../../../../../assets/IMG_0585.jpg"></app-trip-card>
         </div>
         <ng-template #post_card>
             <app-post-card [imageURL]="item.image_url" [content]="item.content" [ownerName]="item.owner_name" [ownerUsername]="item.owner_username" ownerImageURL="../../../../../assets/logo_black.png"></app-post-card>

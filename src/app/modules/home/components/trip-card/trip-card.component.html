@@ -26,7 +26,7 @@
         <div class="profile-pic-sm ml-2" style="background-color: #ccc"></div>
         <div class="profile-pic-sm ml-2" style="background-color: #ccc"></div>
       </div>
-      <img *ngIf="imageURL != 'null'" style="width: 100%" class="img-fluid pt-2 pr-3" [src]="imageUrl"/>
+      <img *ngIf="imageUrl != 'null'" style="width: 100%" class="img-fluid pt-2 pr-3" [src]="imageUrl"/>
       <div class="d-flex pt-3 pb-0">
         <span class="d-flex" *ngIf="likes != 0; else not_liked">
           <i class="fa fa-heart pb-0" style="height: 20px; color: #ad2e39"></i>

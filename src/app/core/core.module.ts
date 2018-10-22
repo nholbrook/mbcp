@@ -9,21 +9,23 @@ import { HeaderComponent } from './header/header.component';
 
 import { routing } from './core.routes';
 
+//Modules
 import { UserModule } from '../modules/user/user.module';
 import { HomeModule } from '../modules/home/home.module';
 import { ContentModule } from '../modules/content/content.module';
 import { NewTripModule } from '../modules/new-trip/new-trip.module';
 
+//Services
 import { FeedService } from './http/feed.service';
 import { PostService } from './http/post.service';
+
 import { AuthService } from './authentication/auth.service';
 import { LoginModule } from '../modules/login/login.module';
 import { AuthGuard } from './guards/auth-guard.service';
 
+//External
 import { AmplifyAngularModule, AmplifyService } from 'aws-amplify-angular';
-
 import { CookieService } from 'ngx-cookie-service';
-
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
