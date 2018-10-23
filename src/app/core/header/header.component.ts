@@ -40,7 +40,7 @@ export class HeaderComponent implements OnInit {
         if (this.authState == 'signedIn') {
           Storage.get(this.cookieService.get('username') + '.jpg', { level: 'public' }).then(
             data => {
-              this.profileImageUrl = this.sanitizer.bypassSecurityTrustResourceUrl(data);
+              this.profileImageUrl = this.sanitizer.bypassSecurityTrustResourceUrl(data as string);
             }
           );
         } else {

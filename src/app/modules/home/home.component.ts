@@ -49,7 +49,7 @@ export class HomeComponent implements OnInit {
     );
 
     Storage.get(this.cookieService.get('username') + '.jpg', { level: 'public' }).then(data => {
-      this.profileImageUrl = this.sanitizer.bypassSecurityTrustResourceUrl(data);
+      this.profileImageUrl = this.sanitizer.bypassSecurityTrustResourceUrl(data as string);
     });
 
     this.profileUsername = this.authService.username;
