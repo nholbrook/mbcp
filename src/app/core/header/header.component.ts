@@ -16,7 +16,7 @@ import { CookieService } from 'ngx-cookie-service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  profileImageUrl: string;
+  profileImageUrl: any;
   url: string;
   username: string;
   password: string;
@@ -40,7 +40,9 @@ export class HeaderComponent implements OnInit {
         if (this.authState == 'signedIn') {
           Storage.get(this.cookieService.get('username') + '.jpg', { level: 'public' }).then(
             data => {
-              this.profileImageUrl = this.sanitizer.bypassSecurityTrustResourceUrl(data);
+              this.profileImageUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
+                JSON.stringify(data)
+              );
             }
           );
         } else {
