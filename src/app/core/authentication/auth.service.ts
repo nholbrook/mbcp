@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { AmplifyService, Amplify } from 'aws-amplify-angular';
+import { AmplifyService } from 'aws-amplify-angular';
 import { Storage, Auth } from 'aws-amplify';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
