@@ -2,10 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
 
-import { Storage, Auth } from 'aws-amplify';
-
 import { FeedService } from '../../core/http/feed.service';
 import { PostService } from '../../core/http/post.service';
+import { AuthService } from '../../core/authentication/auth.service';
+
+import { Storage, Auth } from 'aws-amplify';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-home',
@@ -26,7 +28,9 @@ export class HomeComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private feedService: FeedService,
     private postService: PostService,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private cookieService: CookieService,
+    private authService: AuthService
   ) {}
 
   ngOnInit() {
@@ -37,32 +41,35 @@ export class HomeComponent implements OnInit {
       console.log(data['feed']);
     });
 
-    Storage.get('pics/featured.jpg', { level: 'private' }).then(data => {
-      console.log(data);
-      this.featuredImageUrl = JSON.stringify(data);
+    Storage.get(this.cookieService.get('username') + '-featured.jpg', { level: 'public' }).then(
+      data => {
+        console.log(data);
+        this.featuredImageUrl = JSON.stringify(data);
+      }
+    );
+
+    Storage.get(this.cookieService.get('username') + '.jpg', { level: 'public' }).then(data => {
+      this.profileImageUrl = this.sanitizer.bypassSecurityTrustResourceUrl(data);
     });
 
-    Storage.get('nickholbrook.jpg', { level: 'public' }).then(data => {
-      console.log(data);
-      this.profileImageUrl = JSON.stringify(data); //this.sanitizer.bypassSecurityTrustUrl(data);
-    });
-
-    Auth.currentAuthenticatedUser()
-      .then(user => {
-        this.profileUsername = user.username;
-        this.profileName = user.attributes.name;
-      })
-      .catch(err => console.log(err));
+    this.profileUsername = this.authService.username;
+    this.profileName = this.authService.name;
   }
 
   createPost() {
-    console.log(this.content);
     this.postService.createPost(this.content).subscribe(res => {
+      console.log(res);
       this.feedService.getData().subscribe(data => {
         this.content = '';
         this.items.unshift(data['feed'][0]);
         console.log(this.items);
       });
     });
+  }
+
+  trustURL(url: string) {
+    return this.sanitizer.bypassSecurityTrustResourceUrl(
+      'https://s3-us-west-2.amazonaws.com/mbcpf83ce0fbc3b2439d90078e3b9c0b0d5e/public/dunes.jpg'
+    );
   }
 }

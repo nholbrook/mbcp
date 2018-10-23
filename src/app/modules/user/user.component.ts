@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { DomSanitizer } from '@angular/platform-browser';
 
 import { Storage } from 'aws-amplify';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-user',
@@ -10,21 +12,26 @@ import { Storage } from 'aws-amplify';
 })
 export class UserComponent implements OnInit {
   route = 'Test';
+  username = '';
   featuredImageUrl = '';
   profileImageUrl = '';
 
-  constructor(private activatedRoute: ActivatedRoute) {}
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private cookieService: CookieService,
+    private sanitizer: DomSanitizer,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.route = this.activatedRoute.snapshot.url.join();
+    this.username = this.router.url.split('/')[2];
 
-    Storage.get('pics/featured.jpg', { level: 'private' }).then(data => {
-      console.log(data);
+    Storage.get(this.username + '-featured.jpg', { level: 'public' }).then(data => {
       this.featuredImageUrl = JSON.stringify(data);
     });
 
-    Storage.get('pics/profile.png', { level: 'private' }).then(data => {
-      console.log(data);
+    Storage.get(this.username + '.jpg', { level: 'public' }).then(data => {
       this.profileImageUrl = JSON.stringify(data);
     });
   }

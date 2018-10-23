@@ -28,10 +28,8 @@ export class TripCardComponent implements OnInit {
     }
     this.comments = Math.floor(Math.random() * 100) + 1;
 
-    Storage.get('nickholbrook.jpg', {
-      level: 'public'
-    }).then(result => {
-      this.ownerImageUrl = JSON.stringify(result);
+    Storage.get(this.ownerUsername + '.jpg', { level: 'public' }).then(data => {
+      this.ownerImageUrl = JSON.stringify(data);
     });
 
     Storage.get('dunes.jpg', {

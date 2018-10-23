@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { TripService } from '../../core/http/trip.service';
 
 import { Storage, Auth } from 'aws-amplify';
 
@@ -10,9 +13,15 @@ import { Storage, Auth } from 'aws-amplify';
 export class NewTripComponent implements OnInit {
   content = '';
 
-  constructor() {}
+  constructor(private tripService: TripService, private router: Router) {}
 
   ngOnInit() {}
+
+  createTrip() {
+    this.tripService.createTrip().subscribe(res => {
+      this.router.navigate['/home'];
+    });
+  }
 
   fileChange($event) {
     console.log($event);

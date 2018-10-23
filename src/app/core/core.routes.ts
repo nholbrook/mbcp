@@ -39,7 +39,8 @@ export const routes: Routes = [
     component: NewTripComponent,
     data: { title: 'MBCP | New Trip' }
   },
-  { path: '**', redirectTo: '' }
+  { path: '**', redirectTo: '' },
+  { path: '*', redirectTo: '' }
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(routes);

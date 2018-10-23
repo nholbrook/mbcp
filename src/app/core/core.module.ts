@@ -20,6 +20,7 @@ import { LoginModule } from '../modules/login/login.module';
 //Services
 import { FeedService } from './http/feed.service';
 import { PostService } from './http/post.service';
+import { TripService } from './http/trip.service';
 
 //Auth
 import { AuthService } from './authentication/auth.service';
@@ -49,6 +50,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
   providers: [
     FeedService,
     PostService,
+    TripService,
     HttpClient,
     AmplifyService,
     AuthService,

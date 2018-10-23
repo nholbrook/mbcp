@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { AmplifyService } from 'aws-amplify-angular';
+import { AmplifyService, Amplify } from 'aws-amplify-angular';
 import { Storage, Auth } from 'aws-amplify';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -15,10 +15,61 @@ export class AuthService {
     private router: Router
   ) {}
 
+  user: any;
   signedIn: boolean;
-  profileUsername: string;
-  profileName: string;
-  profileId: string;
+  username: string;
+  name: string;
+  id: string;
+  email: string;
+
+  init() {
+    this.amplify.authStateChange$.subscribe(authState => {
+      this.signedIn = authState.state === 'signedIn';
+    });
+  }
+
+  logout() {
+    Auth.signOut()
+      .then(data => {
+        this.cookieService.delete('auth');
+        this.cookieService.delete('username');
+        this.router.navigate(['/']);
+      })
+      .catch(err => console.log(err));
+  }
+
+  login(username: string, password: string) {
+    Auth.signIn(username, password)
+      .then(user => {
+        this.cookieService.set('username', user['username']);
+        this.cookieService.set('auth', user['signInUserSession']['accessToken']['jwtToken']);
+        Auth.currentAuthenticatedUser().then(user => {
+          this.username = user.username;
+          this.name = user.attributes.name;
+          this.id = user.attributes['custom:id'];
+          this.email = user.attributes.email;
+          this.router.navigate(['/home']);
+        });
+      })
+      .catch(err => console.log(err));
+  }
+
+  signup(username: string, password: string, email: string, name: string, id: string) {
+    Auth.signUp({
+      username: username,
+      password: password,
+      attributes: {
+        email: email,
+        name: name,
+        id: id
+      }
+    })
+      .then(data => {
+        console.log(data['pool']);
+        this.router.navigate(['/home']);
+      })
+      .catch(err => console.log(err));
+  }
 
   profilePicChange(): Observable<any> {
     return this.amplify.authStateChange$.pipe(
@@ -38,42 +89,5 @@ export class AuthService {
         }
       })
     );
-  }
-
-  logout() {
-    Auth.signOut()
-      .then(data => {
-        this.cookieService.delete('auth');
-        this.router.navigate(['/']);
-      })
-      .catch(err => console.log(err));
-  }
-
-  login(username: string, password: string) {
-    Auth.signIn(username, password)
-      .then(user => {
-        Auth.currentAuthenticatedUser()
-          .then(user => {
-            this.cookieService.set('auth', user['signInUserSession']['accessToken']['jwtToken']);
-            this.router.navigate(['/home']);
-          })
-          .catch(err => console.log(err));
-      })
-      .catch(err => console.log(err));
-  }
-
-  signup(username: string, password: string, email: string, name: string, id: string) {
-    Auth.signUp({
-      username: username,
-      password: password,
-      attributes: {
-        email: email,
-        name: name,
-        'custom:id': id
-      },
-      validationData: []
-    })
-      .then(data => console.log(data['pool']))
-      .catch(err => console.log(err));
   }
 }

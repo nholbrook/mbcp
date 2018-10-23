@@ -4,30 +4,30 @@
 <div class="row">
   <div class="col-md-6 d-sm-none d-md-block">
     <h3 style="padding: 30px; font-weight: 600">Find local trips and groups around you on MBCP.</h3>
-    <img class="img-fluid pl-4 pr-4" src="https://s3-us-west-2.amazonaws.com/mbcp.xyz/assets/clouds-fog-forest-9754.jpg" style="width: 100%; height: auto;"/>
+    <img class="img-fluid" src="https://s3-us-west-2.amazonaws.com/mbcp.xyz/assets/clouds-fog-forest-9754.jpg" style="width: 75%; height: auto; border-width: 5px; border-color: #FFF; border-style: solid; margin-left: 7.5%"/>
   </div>
   <div class="col-xs-12 col-md-6">
     <h2 style="padding-top: 20px; font-weight: 600">Create a New Account.</h2>
     <form>
       <div class="form-row">
         <div class="form-group col-md-6">
-          <label for="inputEmail4">First name</label>
-          <input required class="form-control" id="inputEmail4" placeholder="First name">
+          <label for="inputFirstName">First name</label>
+          <input required class="form-control" id="inputFirstName" placeholder="First name">
         </div>
         <div class="form-group col-md-6">
-          <label for="inputPassword4">Last name</label>
-          <input required class="form-control" id="inputPassword4" placeholder="Last name">
+          <label for="inputLastName">Last name</label>
+          <input required class="form-control" id="inputLastName" placeholder="Last name">
         </div>
       </div>
       <div class="form-group">
-        <label for="inputPassword4">Email</label>
-        <input required type="email" class="form-control" id="inputPassword4" placeholder="Email">
+        <label for="inputEmail">Email</label>
+        <input required type="email" class="form-control" id="inputEmail" placeholder="Email">
       </div>
       <div class="form-group">
-        <label for="inputState">Birthday</label>
+        <label for="inputBirthdayMonth">Birthday</label>
         <div class="form-row">
           <div class="form-group col-md-5">
-            <select id="inputState" class="form-control">
+            <select id="inputBirthdayMonth" class="form-control">
               <option>January</option>
               <option>Febuary</option>
               <option>March</option>
@@ -43,7 +43,7 @@
             </select>
           </div>
           <div class="form-group col-md-3">
-            <select id="inputState" class="form-control">
+            <select id="inputBirthdayDay" class="form-control">
               <option>1</option>
               <option>2</option>
               <option>3</option>
@@ -77,7 +77,7 @@
             </select>
           </div>
           <div class="form-group col-md-4">
-            <select id="inputState" class="form-control">
+            <select id="inputBirthdayYear" class="form-control">
               <option>1991</option>
               <option>1992</option>
               <option>1993</option>
@@ -112,25 +112,25 @@
       </div>
       <div class="form-row">
         <div class="form-group col-md-6">
-          <label for="inputEmail4">Password</label>
-          <input type="password" required class="form-control" id="inputEmail4" placeholder="Password">
+          <label for="inputPassword">Password</label>
+          <input type="password" required class="form-control" id="inputPassword" placeholder="Password">
         </div>
         <div class="form-group col-md-6">
-          <label for="inputPassword4">Confirm password</label>
-          <input type="password" required class="form-control" id="inputPassword4" placeholder="Confirm password">
+          <label for="inputPasswordConfirm">Confirm password</label>
+          <input type="password" required class="form-control" id="inputPasswordConfirm" placeholder="Confirm password">
         </div>
       </div>
       <div class="form-group">
         <div class="custom-control custom-radio custom-control-inline">
-          <input type="radio" required id="customRadioInline1" name="customRadioInline1" class="custom-control-input">
-          <label class="custom-control-label radio" for="customRadioInline1">Male</label>
+          <input type="radio" required id="radioGender1" name="radioGender1" class="custom-control-input">
+          <label class="custom-control-label radio" for="radioGender2">Male</label>
         </div>
         <div class="custom-control custom-radio custom-control-inline">
-          <input type="radio" required id="customRadioInline2" name="customRadioInline1" class="custom-control-input">
-          <label class="custom-control-label radio" for="customRadioInline2">Female</label>
+          <input type="radio" required id="radioGender2" name="radioGender2" class="custom-control-input">
+          <label class="custom-control-label radio" for="radioGender2">Female</label>
         </div>
       </div>
-      <button type="submit" class="btn btn-primary">Sign up</button>
+      <button type="submit" class="btn btn-primary" (click)="signup()">Sign up</button>
     </form>
   </div>
 </div>

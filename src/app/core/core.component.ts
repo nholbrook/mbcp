@@ -21,23 +21,15 @@ export class CoreComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private titleService: Title,
     private amplify: AmplifyService,
-    private auth: AuthService
+    private authService: AuthService
   ) {}
 
   ngOnInit() {
-    this.router.events
-      .pipe(filter(event => event instanceof NavigationEnd))
-      .subscribe(() => {
-        this.titleService.setTitle(
-          this.activatedRoute.root.firstChild.data['_value'].title
-        );
-      });
-
-    this.amplify.authStateChange$.subscribe(authState => {
-      this.auth.signedIn = authState.state === 'signedIn';
+    this.router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe(() => {
+      this.titleService.setTitle(this.activatedRoute.root.firstChild.data['_value'].title);
     });
 
-    //console.log(JSON.parse(localStorage.getItem('CognitoIdentityServiceProvider.1q049i98vqgtac31h7l4ptkea7.LastAuthUser')));
+    this.authService.init();
   }
 
   onImagePicked(file) {

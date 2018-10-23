@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 
+import { CookieService } from 'ngx-cookie-service';
 import { Storage } from 'aws-amplify';
 
 @Component({
@@ -11,14 +12,14 @@ import { Storage } from 'aws-amplify';
 export class PostCardComponent implements OnInit {
   @Input() imageURL: string;
   @Input() ownerName: string;
-  @Input() ownerImageUrl: string;
-  @Input() ownerUsername: string;
   @Input() content: string;
+  @Input() ownerUsername: string;
 
+  ownerImageUrl: string;
   likes: number = 0;
   comments: number = 0;
 
-  constructor() {}
+  constructor(private cookieService: CookieService) {}
 
   ngOnInit() {
     this.likes = Math.floor(Math.random() * 100) + 1;
@@ -27,11 +28,8 @@ export class PostCardComponent implements OnInit {
     }
     this.comments = Math.floor(Math.random() * 100) + 1;
 
-    Storage.get('profile.png', {
-      level: 'public',
-      identityId: this.ownerUsername
-    }).then(result => {
-      this.ownerImageUrl = JSON.stringify(result);
+    Storage.get(this.ownerUsername + '.jpg', { level: 'public' }).then(data => {
+      this.ownerImageUrl = JSON.stringify(data);
     });
   }
 }
