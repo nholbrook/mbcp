@@ -81,13 +81,8 @@ export class HomeComponent implements OnInit {
     var date: string;
     var d1 = new Date();
     var utcDate = d1.toUTCString();
-    console.log(utcDate);
-
     var d2 = new Date(date); //('2018-10-23 21:27:06+0000');
-    console.log(d2.toUTCString());
-
     var timeDiff = Math.abs(d1.getTime() - d2.getTime());
-    console.log(timeDiff);
 
     if (timeDiff > 30 * 24 * 60 * 60 * 1000) {
       switch (d2.getUTCMonth()) {

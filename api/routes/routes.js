@@ -22,11 +22,8 @@ module.exports = (function() {
 
   routes.get('/feed', content.get_feed);
   routes
-    .get('/content', content.list_all_content)
+    .get('/content', content.get_content)
     .post('/content', content.create_content);
-  routes
-    .get('/content/:id', content.read_content)
-    .put('/content/:id', content.update_content);
 
   return routes;
 })();

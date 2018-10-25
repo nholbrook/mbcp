@@ -31,7 +31,6 @@ export class ContentComponent implements OnInit {
     this.sub = this.route.params.subscribe(params => {
       this.postService.getPost(params['id']).subscribe(data => {
         this.data = JSON.stringify(data);
-        console.log(this.data);
         this.imageURL = data['feed'][0]['image_url'];
         this.name = data['feed'][0]['name'];
         this.ownerName = data['feed'][0]['owner_name'];

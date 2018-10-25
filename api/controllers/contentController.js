@@ -9,32 +9,49 @@ const client = new cassandra.Client({
   keyspace: 'production'
 });
 
-exports.list_all_content = function(req, res) {
+exports.get_feed = function(req, res) {
   const query =
-    'SELECT content_id, created_date, activity_type, city, content, content_type, cost, image_url, name, owner_id, owner_name, owner_type, owner_username, total_spots, visibility FROM content';
-  client.execute(query, function(err, result) {
-    if (err != null) console.log(err);
-    var content = result;
-    res.json(content);
+    'SELECT content_id, created_date, activity_type, city, content, content_type, cost, image_url, name, owner_id, owner_name, owner_type, owner_username, total_spots, visibility FROM feeds WHERE owner_id = ?';
+  const params = [req.query.id];
+  client.execute(query, params, function(err, result) {
+    if (err != null) res.json(err);
+    res.json(result);
   });
 };
 
-exports.get_feed = function(req, res) {
+exports.get_content = function(req, res) {
   const query =
-    'SELECT content_id, created_date, activity_type, city, content, content_type, cost, image_url, name, owner_id, owner_name, owner_type, owner_username, total_spots, visibility FROM feeds WHERE owner_id = ' +
-    req.query.id;
-  client.execute(query, function(err, result) {
+    'SELECT content_id, created_date, activity_type, city, content, content_type, cost, image_url, name, owner_id, owner_name, owner_type, owner_username, total_spots, visibility FROM content WHERE content_id = ?';
+  const params = [req.query.id];
+  client.execute(query, params, function(err, result) {
     if (err != null) console.log(err);
-    var content = result;
-    res.json(content);
+    res.json(result);
   });
 };
 
 exports.create_content = function(req, res) {
-  var new_content = new Content(req.body);
-  new_task.save(function(err, task) {
-    if (err) res.send(err);
-    res.json(task);
+  const query =
+    'INSERT INTO content (content_id, created_date, activity_type, city, content, content_type, cost, image_url, name, owner_id, owner_name, owner_type, owner_username, total_spots, visibility) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
+  const params = [
+    '58bf448f-cc9f-43d6-aba4-1a980685c622',
+    '2018-10-25 19:14:06+0000',
+    'other',
+    '',
+    'This is a NodeJS post.',
+    'post',
+    '',
+    '',
+    '',
+    '10000000-0000-0000-0000-000000000000',
+    'Nick Holbrook',
+    'user',
+    'nholbrook',
+    '',
+    'public'
+  ];
+  client.execute(query, function(err, result) {
+    if (err != null) res.json(err);
+    res.json(result);
   });
 };
 
