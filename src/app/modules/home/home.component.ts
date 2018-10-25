@@ -41,15 +41,19 @@ export class HomeComponent implements OnInit {
       console.log(data['rows']);
     });
 
-    Storage.get(this.cookieService.get('username') + '-featured.jpg', { level: 'public' }).then(
-      data => {
-        console.log(data);
-        this.featuredImageUrl = JSON.stringify(data);
-      }
-    );
+    Storage.get(this.cookieService.get('username') + '-featured.jpg', {
+      level: 'public'
+    }).then(data => {
+      console.log(data);
+      this.featuredImageUrl = JSON.stringify(data);
+    });
 
-    Storage.get(this.cookieService.get('username') + '.jpg', { level: 'public' }).then(data => {
-      this.profileImageUrl = this.sanitizer.bypassSecurityTrustResourceUrl(data as string);
+    Storage.get(this.cookieService.get('username') + '.jpg', {
+      level: 'public'
+    }).then(data => {
+      this.profileImageUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
+        data as string
+      );
     });
 
     this.profileUsername = this.cookieService.get('username');
@@ -113,15 +117,17 @@ export class HomeComponent implements OnInit {
           return 'Dec ' + d2.getUTCDate();
         default:
           return d2.toUTCString();
-          Q;
       }
-    } else if ((timeDiff <= 30 * 24 * 60 * 60 * 1000) & (timeDiff > 23 * 60 * 60 * 1000)) {
+    } else if (
+      timeDiff <= 30 * 24 * 60 * 60 * 1000 &&
+      timeDiff > 23 * 60 * 60 * 1000
+    ) {
       return Math.ceil(timeDiff / (24 * 1000 * 60 * 60)) + 'd';
-    } else if ((timeDiff <= 23 * 60 * 60 * 1000) & (timeDiff > 60 * 60 * 1000)) {
+    } else if (timeDiff <= 23 * 60 * 60 * 1000 && timeDiff > 60 * 60 * 1000) {
       return Math.ceil(timeDiff / (1000 * 60 * 60)) + 'h';
-    } else if ((timeDiff <= 60 * 60 * 1000) & (timeDiff > 60 * 1000)) {
+    } else if (timeDiff <= 60 * 60 * 1000 && timeDiff > 60 * 1000) {
       return Math.ceil(timeDiff / (1000 * 60)) + 'm';
-    } else if ((timeDiff <= 60 * 1000) & (timeDiff > 1000)) {
+    } else if (timeDiff <= 60 * 1000 && timeDiff > 1000) {
       return Math.ceil(timeDiff / 1000) + 's';
     } else if (timeDiff <= 1000) {
       return '1s';

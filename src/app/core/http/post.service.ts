@@ -37,10 +37,13 @@ export class PostService {
     formData.append('owner_id', this.cookieService.get('id'));
     formData.append('owner_name', this.cookieService.get('name'));
     formData.append('owner_username', this.cookieService.get('username'));
-    formData.append('subscriptions', [
-      '10000000-0000-0000-0000-000000000000',
-      '20000000-0000-0000-0000-000000000000'
-    ]);
+    formData.append(
+      'subscriptions',
+      JSON.stringify([
+        '10000000-0000-0000-0000-000000000000',
+        '20000000-0000-0000-0000-000000000000'
+      ])
+    );
     return this.http.post('http://34.220.86.249/v1/content', formData);
   }
 }
