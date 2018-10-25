@@ -36,23 +36,15 @@ export class HeaderComponent implements OnInit {
     });
 
     this.router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe(data => {
-      if (data['url'] != '/') {
-        if (this.authState == 'signedIn') {
-          Storage.get(this.cookieService.get('username') + '.jpg', { level: 'public' }).then(
-            data => {
-              this.profileImageUrl = this.sanitizer.bypassSecurityTrustResourceUrl(data as string);
-            }
-          );
-        } else {
-          this.profileImageUrl = '';
-        }
-      }
       this.url = this.router.url;
     });
   }
 
   login() {
     this.authService.login(this.username, this.password);
+    Storage.get(this.cookieService.get('username') + '.jpg', { level: 'public' }).then(data => {
+      this.profileImageUrl = this.sanitizer.bypassSecurityTrustResourceUrl(data as string);
+    });
   }
 
   logout() {

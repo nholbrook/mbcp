@@ -11,17 +11,23 @@
     <form>
       <div class="form-row">
         <div class="form-group col-md-6">
+          <label for="inputUsername">Username</label>
+          <input [(ngModel)]="username" required name="username" class="form-control" id="inputUsername" placeholder="Username">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="inputEmail">Email</label>
+          <input [(ngModel)]="email" required name="email" type="email" class="form-control" id="inputEmail" placeholder="Email">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
           <label for="inputFirstName">First name</label>
-          <input required class="form-control" id="inputFirstName" placeholder="First name">
+          <input [(ngModel)]="firstName" required name="firstName" class="form-control" id="inputFirstName" placeholder="First name">
         </div>
         <div class="form-group col-md-6">
           <label for="inputLastName">Last name</label>
-          <input required class="form-control" id="inputLastName" placeholder="Last name">
+          <input [(ngModel)]="lastName" required name="lastName" class="form-control" id="inputLastName" placeholder="Last name">
         </div>
-      </div>
-      <div class="form-group">
-        <label for="inputEmail">Email</label>
-        <input required type="email" class="form-control" id="inputEmail" placeholder="Email">
       </div>
       <div class="form-group">
         <label for="inputBirthdayMonth">Birthday</label>
@@ -113,7 +119,7 @@
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="inputPassword">Password</label>
-          <input type="password" required class="form-control" id="inputPassword" placeholder="Password">
+          <input [(ngModel)]="password" type="password" required name="password" class="form-control" id="inputPassword" placeholder="Password">
         </div>
         <div class="form-group col-md-6">
           <label for="inputPasswordConfirm">Confirm password</label>

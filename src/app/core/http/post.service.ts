@@ -3,9 +3,15 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 
 import { AuthService } from '../authentication/auth.service';
 
+import { CookieService } from 'ngx-cookie-service';
+
 @Injectable()
 export class PostService {
-  constructor(private http: HttpClient, private authService: AuthService) {}
+  constructor(
+    private http: HttpClient,
+    private authService: AuthService,
+    private cookieService: CookieService
+  ) {}
 
   getPost(id: string) {
     return this.http.get('http://34.220.86.249/v1/content?content_id=' + id);
@@ -28,10 +34,13 @@ export class PostService {
     //formData.append('start_date', '2018-09-05T00:00:00+00:00');
     //formData.append('end_date', '2018-09-05T00:00:00+00:00');
     formData.append('owner_type', 'user');
-    formData.append('owner_id', this.authService.id);
-    formData.append('owner_name', this.authService.name);
-    formData.append('owner_username', this.authService.username);
-    formData.append('subscriptions', this.authService.id);
+    formData.append('owner_id', this.cookieService.get('id'));
+    formData.append('owner_name', this.cookieService.get('name'));
+    formData.append('owner_username', this.cookieService.get('username'));
+    formData.append('subscriptions', [
+      '10000000-0000-0000-0000-000000000000',
+      '20000000-0000-0000-0000-000000000000'
+    ]);
     return this.http.post('http://34.220.86.249/v1/content', formData);
   }
 }

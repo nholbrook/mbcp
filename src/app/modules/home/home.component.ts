@@ -37,8 +37,8 @@ export class HomeComponent implements OnInit {
     this.route = this.activatedRoute.snapshot.url.join();
 
     this.feedService.getData().subscribe(data => {
-      this.items = data['feed'];
-      console.log(data['feed']);
+      this.items = data['rows'];
+      console.log(data['rows']);
     });
 
     Storage.get(this.cookieService.get('username') + '-featured.jpg', { level: 'public' }).then(
@@ -52,8 +52,8 @@ export class HomeComponent implements OnInit {
       this.profileImageUrl = this.sanitizer.bypassSecurityTrustResourceUrl(data as string);
     });
 
-    this.profileUsername = this.authService.username;
-    this.profileName = this.authService.name;
+    this.profileUsername = this.cookieService.get('username');
+    this.profileName = this.cookieService.get('name');
   }
 
   createPost() {
@@ -71,5 +71,62 @@ export class HomeComponent implements OnInit {
     return this.sanitizer.bypassSecurityTrustResourceUrl(
       'https://s3-us-west-2.amazonaws.com/mbcpf83ce0fbc3b2439d90078e3b9c0b0d5e/public/dunes.jpg'
     );
+  }
+
+  getDisplayDate(date: string) {
+    var date: string;
+    var d1 = new Date();
+    var utcDate = d1.toUTCString();
+    console.log(utcDate);
+
+    var d2 = new Date(date); //('2018-10-23 21:27:06+0000');
+    console.log(d2.toUTCString());
+
+    var timeDiff = Math.abs(d1.getTime() - d2.getTime());
+    console.log(timeDiff);
+
+    if (timeDiff > 30 * 24 * 60 * 60 * 1000) {
+      switch (d2.getUTCMonth()) {
+        case 0:
+          return 'Jan ' + d2.getUTCDate();
+        case 1:
+          return 'Feb ' + d2.getUTCDate();
+        case 2:
+          return 'Mar ' + d2.getUTCDate();
+        case 3:
+          return 'Apr ' + d2.getUTCDate();
+        case 4:
+          return 'May ' + d2.getUTCDate();
+        case 5:
+          return 'Jun ' + d2.getUTCDate();
+        case 6:
+          return 'Jul ' + d2.getUTCDate();
+        case 7:
+          return 'Aug ' + d2.getUTCDate();
+        case 8:
+          return 'Sep ' + d2.getUTCDate();
+        case 9:
+          return 'Oct ' + d2.getUTCDate();
+        case 10:
+          return 'Nov ' + d2.getUTCDate();
+        case 11:
+          return 'Dec ' + d2.getUTCDate();
+        default:
+          return d2.toUTCString();
+          Q;
+      }
+    } else if ((timeDiff <= 30 * 24 * 60 * 60 * 1000) & (timeDiff > 23 * 60 * 60 * 1000)) {
+      return Math.ceil(timeDiff / (24 * 1000 * 60 * 60)) + 'd';
+    } else if ((timeDiff <= 23 * 60 * 60 * 1000) & (timeDiff > 60 * 60 * 1000)) {
+      return Math.ceil(timeDiff / (1000 * 60 * 60)) + 'h';
+    } else if ((timeDiff <= 60 * 60 * 1000) & (timeDiff > 60 * 1000)) {
+      return Math.ceil(timeDiff / (1000 * 60)) + 'm';
+    } else if ((timeDiff <= 60 * 1000) & (timeDiff > 1000)) {
+      return Math.ceil(timeDiff / 1000) + 's';
+    } else if (timeDiff <= 1000) {
+      return '1s';
+    } else {
+      return '-1';
+    }
   }
 }

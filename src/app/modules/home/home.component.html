@@ -1,6 +1,6 @@
-<div class="container pt-3 pb-3">
+<div class="container pt-2 pb-2">
   <div class="row">
-    <div class="col-3 ml-1 mr-1 p-0">
+    <div class="col-3 ml-1 mr-2 p-0">
       <div class="bg-white">
         <div class="feature-image mb-0" [ngStyle]="{'background-image': 'url(' + featuredImageUrl + ')'}"></div>
         <div class="row">
@@ -16,18 +16,27 @@
         </div>
       </div>
     </div>
-    <div class="col-8 ml-1 mr-1 p-0 bg-white">
+    <div class="col-6 ml-1 mr-1 p-0 bg-white">
       <div class="bg-white border-bottom p-3 d-flex">
         <input class="form-control" type="search" [(ngModel)]="content" placeholder="What's Happening?" aria-label="Search"/>
         <button class="btn ml-2" (click)="createPost()">Post</button>
       </div>
       <div #trip_card *ngFor="let item of items">
         <div *ngIf="item.content_type == 'trip'; else post_card">
-          <app-trip-card [tripName]="item.name" [tripDescription]="item.content" [imageUrl]="trustURL(item.image_url)" [ownerName]="item.owner_name" [ownerUsername]="item.owner_username"></app-trip-card>
+          <app-trip-card [tripName]="item.name" [tripDescription]="item.content" [imageUrl]="trustURL(item.image_url)" [ownerName]="item.owner_name" [ownerUsername]="item.owner_username" [createdDate]="getDisplayDate(item.created_date)"></app-trip-card>
         </div>
         <ng-template #post_card>
-            <app-post-card [imageURL]="item.image_url" [content]="item.content" [ownerName]="item.owner_name" [ownerUsername]="item.owner_username"></app-post-card>
+            <app-post-card [imageURL]="item.image_url" [content]="item.content" [ownerName]="item.owner_name" [ownerUsername]="item.owner_username" [createdDate]="getDisplayDate(item.created_date)"></app-post-card>
         </ng-template>
+      </div>
+    </div>
+    <div class="col-2 ml-1 mr-2 p-0">
+      <div class="bg-white">
+        <p class="ml-3 m-0 p-0" style="font-weight: bold; font-size: 18px;">You might know</p>
+        <br><br><br><br><br><br><br><br><br>
+      </div>
+      <div class="bg-white mt-2 p-1">
+        <img class="img-fluid" src="https://s3-us-west-2.amazonaws.com/mbcpf83ce0fbc3b2439d90078e3b9c0b0d5e/public/ad.png"/>
       </div>
     </div>
   </div>

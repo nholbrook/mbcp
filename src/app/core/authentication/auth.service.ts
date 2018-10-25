@@ -15,17 +15,31 @@ export class AuthService {
     private router: Router
   ) {}
 
-  user: any;
-  signedIn: boolean;
-  username: string;
-  name: string;
-  id: string;
-  email: string;
+  authState: string;
 
   init() {
     this.amplify.authStateChange$.subscribe(authState => {
-      this.signedIn = authState.state === 'signedIn';
+      this.authState = authState.state;
     });
+  }
+
+  login(username: string, password: string) {
+    Auth.signIn(username, password)
+      .then(user => {
+        this.cookieService.set('username', user['username']);
+        this.cookieService.set(
+          'auth',
+          user['signInUserSession']['accessToken']['jwtToken']
+        );
+        Auth.currentAuthenticatedUser().then(user => {
+          this.cookieService.set('username', user.username);
+          this.cookieService.set('name', user.attributes.name);
+          this.cookieService.set('id', user.attributes['custom:id']);
+          this.cookieService.set('email', user.attributes.email);
+          this.router.navigate(['/home']);
+        });
+      })
+      .catch(err => console.log(err));
   }
 
   logout() {
@@ -33,45 +47,51 @@ export class AuthService {
       .then(data => {
         this.cookieService.delete('auth');
         this.cookieService.delete('username');
+        this.cookieService.delete('name');
+        this.cookieService.delete('id');
+        this.cookieService.delete('email');
         this.router.navigate(['/']);
       })
       .catch(err => console.log(err));
   }
 
-  login(username: string, password: string) {
-    Auth.signIn(username, password)
-      .then(user => {
-        this.cookieService.set('username', user['username']);
-        this.cookieService.set('auth', user['signInUserSession']['accessToken']['jwtToken']);
-        Auth.currentAuthenticatedUser().then(user => {
-          this.username = user.username;
-          this.name = user.attributes.name;
-          this.id = user.attributes['custom:id'];
-          this.email = user.attributes.email;
-          this.router.navigate(['/home']);
-        });
-      })
-      .catch(err => console.log(err));
-  }
-
-  signup(username: string, password: string, email: string, name: string, id: string) {
+  signup(
+    username: string,
+    password: string,
+    email: string,
+    name: string,
+    id: string,
+    gender: string,
+    birthdate: string,
+    phone_number: string
+  ) {
     Auth.signUp({
       username: username,
       password: password,
       attributes: {
         email: email,
         name: name,
-        id: id
-      }
+        'custom:id': id,
+        gender: gender,
+        birthdate: birthdate, //12-03-1998
+        phone_number: phone_number //+17346242417
+      },
+      validationData: []
     })
       .then(data => {
-        console.log(data['pool']);
+        /*Auth.verifyCurrentUserAttribute(attr)
+          .then(() => {
+            console.log('a verification code is sent');
+          })
+          .catch(e => {
+            console.log('failed with error', e);
+          });*/
         this.router.navigate(['/home']);
       })
       .catch(err => console.log(err));
   }
 
-  profilePicChange(): Observable<any> {
+  /*profilePicChange(): Observable<any> {
     return this.amplify.authStateChange$.pipe(
       map(authState => {
         console.log('pic' + authState);
@@ -89,5 +109,5 @@ export class AuthService {
         }
       })
     );
-  }
+  }*/
 }

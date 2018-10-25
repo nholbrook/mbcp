@@ -1,7 +1,7 @@
 <nav class="sticky-top navbar navbar-expand-md navbar-light bg-white border-bottom p-0">
   <div class="container">
     <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
-      <ul class="navbar-nav mr-auto">
+      <ul *ngIf="url !== '/'" class="navbar-nav mr-auto">
         <li class="nav-item">
           <a class="nav-link" routerLink="/home" routerLinkActive="active">Home</a>
         </li>

@@ -15,6 +15,7 @@ export class TripCardComponent implements OnInit {
   @Input() ownerImageUrl: string;
   @Input() ownerUsername: string;
   @Input() tripDescription: string;
+  @Input() createdDate: string;
 
   likes: number = 0;
   comments: number = 0;

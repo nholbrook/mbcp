@@ -8,10 +8,10 @@
         <p class="mb-0 pb-0" style="font-weight: bold">{{ ownerName }}</p>
         <p class="pl-2 mb-0 pb-0" style="color: #aaa; font-weight: lighter">@{{ ownerUsername }}</p>
         <p class="pl-2 mb-0 pb-0" style="color: #aaa">&#183;</p>
-        <p class="pl-2 mb-0 pb-0" style="color: #aaa; font-weight: lighter">14h</p>
+        <p class="pl-2 mb-0 pb-0" style="color: #aaa; font-weight: lighter">{{ createdDate }}</p>
         <i class="mb-0 pb-0 pr-3 ml-auto fa fa-chevron-down" style="color: #aaa"></i>
       </div>
-      <p *ngIf="content != null" class="pb-0 mb-0" style="font-weight: lighter">{{ content }}</p>
+      <p *ngIf="content != null" class="pb-0 mb-0" style="font-weight: lighter" [innerHtml]="createTextLinks(content)"></p>
       <img *ngIf="imageURL != null" class="img-fluid pr-3 pt-2" [src]="imageURL"/>
       <div class="d-flex pt-3 pb-0">
         <span class="d-flex" *ngIf="likes != 0; else not_liked">
