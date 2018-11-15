@@ -14,7 +14,7 @@ export class PostService {
   ) {}
 
   getPost(id: string) {
-    return this.http.get('http://34.220.86.249/v1/content?content_id=' + id);
+    return this.http.get('https://api.mbcp.xyz/v1/content?content_id=' + id);
   }
 
   createPost(content: string) {
@@ -44,6 +44,6 @@ export class PostService {
         '20000000-0000-0000-0000-000000000000'
       ])
     );
-    return this.http.post('http://34.220.86.249/v1/content', formData);
+    return this.http.post('https://api.mbcp.xyz/v1/content', formData);
   }
 }

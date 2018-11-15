@@ -1,3 +1,11 @@
+.wrapper {
+  background-color: #fff;
+}
+
+.wrapper:hover {
+  background-color: #f5f8fa;
+}
+
 .profile-pic {
   display: inline-block;
   height: 45px;

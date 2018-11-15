@@ -51,9 +51,7 @@ export class HomeComponent implements OnInit {
     Storage.get(this.cookieService.get('username') + '.jpg', {
       level: 'public'
     }).then(data => {
-      this.profileImageUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
-        data as string
-      );
+      this.profileImageUrl = this.sanitizer.bypassSecurityTrustResourceUrl(data as string);
     });
 
     this.profileUsername = this.cookieService.get('username');
@@ -113,10 +111,7 @@ export class HomeComponent implements OnInit {
         default:
           return d2.toUTCString();
       }
-    } else if (
-      timeDiff <= 30 * 24 * 60 * 60 * 1000 &&
-      timeDiff > 23 * 60 * 60 * 1000
-    ) {
+    } else if (timeDiff <= 30 * 24 * 60 * 60 * 1000 && timeDiff > 23 * 60 * 60 * 1000) {
       return Math.ceil(timeDiff / (24 * 1000 * 60 * 60)) + 'd';
     } else if (timeDiff <= 23 * 60 * 60 * 1000 && timeDiff > 60 * 60 * 1000) {
       return Math.ceil(timeDiff / (1000 * 60 * 60)) + 'h';
