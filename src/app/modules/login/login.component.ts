@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { DomSanitizer } from '@angular/platform-browser';
 
 import { AuthService } from '../../core/authentication/auth.service';
 
-import { Auth } from 'aws-amplify';
+import { Storage, Auth } from 'aws-amplify';
 import { CookieService } from 'ngx-cookie-service';
 
 @Component({
@@ -12,20 +13,30 @@ import { CookieService } from 'ngx-cookie-service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  constructor(private cookieService: CookieService, private authService: AuthService) {}
+  constructor(
+    private cookieService: CookieService,
+    private authService: AuthService,
+    private sanitizer: DomSanitizer
+  ) {}
 
-  firstName: string;
+  /*firstName: string;
   lastName: string;
   email: string;
   password: string;
   username: string;
   gender: string;
   birthdate: string;
-  phoneNumber: string;
+  phoneNumber: string;*/
+
+  profileImageUrl: any;
+  url: string;
+  username: string;
+  password: string;
+  authState: string;
 
   ngOnInit() {}
 
-  signup() {
+  /*signup() {
     this.authService.signup(
       'kgordon',
       this.password,
@@ -36,7 +47,7 @@ export class LoginComponent implements OnInit {
       '12-03-1998',
       '+17346242417'
     );
-  }
+  }*/
 
   login() {
     this.authService.login(this.username, this.password);
