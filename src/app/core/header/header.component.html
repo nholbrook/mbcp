@@ -1,4 +1,4 @@
-<nav class="sticky-top navbar navbar-expand-md navbar-light bg-white border-bottom p-0">
+<nav *ngIf="url !== '/'" class="sticky-top navbar navbar-expand-md navbar-light bg-white border-bottom p-0">
   <div class="container">
     <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
       <ul *ngIf="url !== '/'" class="navbar-nav mr-auto">
@@ -22,7 +22,7 @@
     <div class="mx-auto order-0">
       <a class="navbar-brand" routerLink="/home">MBCP</a>
     </div>
-    <div *ngIf="url !== '/'" class="navbar-collapse collapse w-100 order-3 dual-collapse2 justify-content-end">
+    <div class="navbar-collapse collapse w-100 order-3 dual-collapse2 justify-content-end">
       <form class="form-inline">
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
         <div ngbDropdown class="nav-item" placement="bottom-right">
@@ -38,12 +38,12 @@
         <button class="btn my-2 my-sm-0" type="submit" routerLink="/new-trip">New Trip</button>
       </form>
     </div>
-    <div *ngIf="url === '/'" class="navbar-collapse collapse w-100 order-3 dual-collapse2 justify-content-end">
+    <!--<div *ngIf="url === '/'" class="navbar-collapse collapse w-100 order-3 dual-collapse2 justify-content-end">
       <form class="form-inline" (ngSubmit)="login()">
-        <input class="form-control mr-sm-2" placeholder="Username" required [(ngModel)]="username" name="username">
-        <input class="form-control mr-sm-2" placeholder="Password" type="password" required [(ngModel)]="password" name="password">
-        <button class="btn my-2 my-sm-0" type="submit">Login</button>
+        <input class="form-control mr-sm-1" placeholder="Username" required [(ngModel)]="username" name="username">
+        <input class="form-control mr-sm-1" placeholder="Password" type="password" required [(ngModel)]="password" name="password">
+        <button class="btn my-1 my-sm-0" type="submit">Login</button>
       </form>
-    </div>
+    </div>-->
   </div>
 </nav>

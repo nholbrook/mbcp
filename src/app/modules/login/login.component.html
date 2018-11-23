@@ -1,13 +1,22 @@
 <!--<amplify-authenticator></amplify-authenticator>
 <button (click)="signUp()"></button>-->
-<div class="container">
-<div class="row">
-  <div class="col-md-6 d-sm-none d-md-block">
-    <h3 style="padding: 30px; font-weight: 600">Find local trips and groups around you on MBCP.</h3>
-    <img class="img-fluid" src="https://s3-us-west-2.amazonaws.com/mbcp.xyz/assets/clouds-fog-forest-9754.jpg" style="width: 75%; height: auto; border-width: 5px; border-color: #FFF; border-style: solid; margin-left: 7.5%"/>
+<!--<div class="container">-->
+<div class="row m-0" style="width: 100vw; max-width:100%;">
+  <div class="col-md-6 d-none d-lg-block featured-image p-0" style="background-image: url('assets/lake.jpg'); background-position: center; background-size: cover; height: 100vh">
+    <!--<p class="center-info" style="padding: 30px; font-weight: 600; color: #FFFFFF; text-align: center">Find local trips and groups.</p>-->
+    <!--<img class="img-fluid" src="https://s3-us-west-2.amazonaws.com/mbcp.xyz/assets/clouds-fog-forest-9754.jpg" style="width: 75%; height: auto; border-width: 5px; border-color: #FFF; border-style: solid; margin-left: 7.5%"/>-->
   </div>
-  <div class="col-xs-12 col-md-6">
-    <h2 style="padding-top: 20px; font-weight: 600">Create a New Account.</h2>
+  <div class="col-12 col-lg-6 p-0">
+    <form class="form-inline" (ngSubmit)="login()">
+      <div class="container">
+        <div class="row p-4 m-0 mx-0">
+          <input class="form-control mr-lg-3 mb-3 mb-lg-0 col-12 col-lg-4" placeholder="Username" required [(ngModel)]="username" name="username">
+          <input class="form-control mr-lg-3 mb-3 mb-lg-0 col-12 col-lg-4" placeholder="Password" type="password" required [(ngModel)]="password" name="password">
+          <button class="btn col-12 col-lg-2" type="submit">Login</button>
+        </div>
+      </div>
+    </form>
+    <!--<h2 style="padding-top: 20px; font-weight: 600">Create a New Account.</h2>
     <form>
       <div class="form-row">
         <div class="form-group col-md-6">
@@ -128,16 +137,16 @@
       </div>
       <div class="form-group">
         <div class="custom-control custom-radio custom-control-inline">
-          <input type="radio" required id="radioGender1" name="radioGender1" class="custom-control-input">
-          <label class="custom-control-label radio" for="radioGender2">Male</label>
+          <input type="radio" id="radioGender1" name="radioGender1" class="custom-control-input">
+          <label class="custom-control-label radio" for="radioGender1">Male</label>
         </div>
         <div class="custom-control custom-radio custom-control-inline">
-          <input type="radio" required id="radioGender2" name="radioGender2" class="custom-control-input">
+          <input type="radio" id="radioGender2" name="radioGender1" class="custom-control-input">
           <label class="custom-control-label radio" for="radioGender2">Female</label>
         </div>
       </div>
       <button type="submit" class="btn btn-primary" (click)="signup()">Sign up</button>
-    </form>
+    </form>-->
   </div>
 </div>
-</div>
+<!--</div>-->

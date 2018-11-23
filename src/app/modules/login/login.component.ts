@@ -37,4 +37,15 @@ export class LoginComponent implements OnInit {
       '+17346242417'
     );
   }
+
+  login() {
+    this.authService.login(this.username, this.password);
+    Storage.get(this.cookieService.get('username') + '.jpg', { level: 'public' }).then(data => {
+      this.profileImageUrl = this.sanitizer.bypassSecurityTrustResourceUrl(data as string);
+    });
+  }
+
+  logout() {
+    this.authService.logout();
+  }
 }
