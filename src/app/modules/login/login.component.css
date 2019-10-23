@@ -4,32 +4,6 @@
   line-height: 40px;
 }
 
-@-webkit-keyframes on-load {
-  0% {
-    background-position: left;
-  }
-  100% {
-    background-position: center;
-  }
-}
-
-@keyframes on-load {
-  0% {
-    background-position: left;
-  }
-  100% {
-    background-position: center;
-  }
-}
-
-/* The element to apply the animation to */
-.featured-image {
-  width: 100px;
-  height: 100px;
-  -webkit-animation: on-load 5s; /* Safari 4.0 - 8.0 */
-  animation: on-load 5s;
-}
-
 button:hover {
   background-color: #9b000c;
   border-color: #9b000c;

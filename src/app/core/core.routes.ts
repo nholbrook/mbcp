@@ -13,31 +13,37 @@ export const routes: Routes = [
   {
     path: '',
     component: LoginComponent,
-    data: { title: 'MBCP | Login' }
+    data: { title: 'Login to MBCP' }
   },
   {
     path: 'home',
     canActivate: [AuthGuard],
     component: HomeComponent,
-    data: { title: 'MBCP | Home' }
+    data: { title: '*insert slogon here*' }
   },
+  /*{
+    path: 'password-reset',
+    canActivate: [AuthGuard],
+    component: PasswordResetComponent,
+    data: { title: 'Password Reset' }
+  },*/
   {
     path: 'content/:id',
     canActivate: [AuthGuard],
     component: ContentComponent,
-    data: { title: 'MBCP | :id' }
+    data: { title: ':id' }
   },
   {
     path: 'user/:id',
     canActivate: [AuthGuard],
     component: UserComponent,
-    data: { title: 'MBCP | :id' }
+    data: { title: ':id' }
   },
   {
     path: 'new-trip',
     canActivate: [AuthGuard],
     component: NewTripComponent,
-    data: { title: 'MBCP | New Trip' }
+    data: { title: 'New Trip' }
   },
   { path: '**', redirectTo: '' },
   { path: '*', redirectTo: '' }
